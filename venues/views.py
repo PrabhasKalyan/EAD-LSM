@@ -36,5 +36,9 @@ def contact(request):
 def associations(request):
     return render(request,'static/Associations/our-sponsors.html')
 
-
+def test(request):
+    venues=EADVenue.objects.all()
+    lsmvenues=LSMVenue.objects.all()
+    context={'venues':venues,'lsmvenues':lsmvenues}
+    return render(request,'static/Home/test.html',context)
 

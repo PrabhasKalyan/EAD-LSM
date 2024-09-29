@@ -16,6 +16,9 @@
     <meta content="Home" property="twitter:title" />
     <meta content="width=device-width, initial-scale=1" name="viewport" />
     <meta content="Webflow" name="generator" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@glidejs/glide@3.6.1/dist/css/glide.core.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@glidejs/glide@3.6.1/dist/css/glide.theme.min.css">
+   
     <!-- Magnific Popup CSS -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css" />
 
@@ -595,6 +598,21 @@
                     </div>
                     </div>
                     {% endfor %}
+                    {% for venue in venues %}
+                    <div class="swiper-slide">
+                    <div class="card">
+                    <a  href="{% url 'ead' venue.city %}">
+                    <img src="{{ venue.image.url }}" alt="{{ venue.city }}" class="card-image">
+                    <div class="tag">EAD</div>
+                    <div class="card-content">
+                    <p class="card-city">EAD-{{ venue.city }}</p>
+                    <p>{{venue.date}}</p>
+                    <p>{{ venue.venue }}</p>
+                    </div>
+                    </a>
+                    </div>
+                    </div>
+                    {% endfor %}
                 </div>
                  <!-- Pagination -->
                  <div class="swiper-pagination my-swiper"></div>
@@ -608,8 +626,8 @@
                 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
               <script>
                 // Swiper initialization with centered active slide scaling
-                const swiper = new Swiper('.my-swiper', {
-                  slidesPerView: 4,                 // Show 3 slides at once
+                var swiper = new Swiper('.my-swiper', {
+                  slidesPerView: 4,                 // Show 4 slides at once
                   spaceBetween: 30,                 // Space between slides
                   centeredSlides: true,             // Center the active slide
                   loop: true,                       // Enable continuous looping
@@ -649,70 +667,78 @@
                   }
 
                 });
-                const swiperLSM = new Swiper('.my-swiper-lsm', {
-                slidesPerView: 4,                
-                spaceBetween: 30,                
-                centeredSlides: true,            
-                loop: true,                      
-                autoplay: {
-                delay: 2500,                   
-                disableOnInteraction: true,   
-                },
-                pagination: {
-                el: '.my-swiper-pagination-lsm',
-                clickable: true,               
-                },
-                navigation: {
-                nextEl: '.my-swiper-button-next-lsm', 
-                prevEl: '.my-swiper-button-prev-lsm',
-                },
-                breakpoints: {
-                    640: {
-                        slidesPerView: 4,
-                        centeredSlides: true,
-                    },
-                    0: {
-                        slidesPerView: 1,
-                        centeredSlides: true,
-                    },
-                },
-            });
+            
               </script>
-            <div class="flex-vertical-center">
-                <h5 class="section-subtitle">15+ cities</h5>
-                <div data-w-id="313a2d96-2438-0eb4-cd44-7562ebc5f1d7" class="animated-divider">
-                    <h2 class="text-align-center">Local Startups' Meet</h2>
-                    <div class="divider-block">
-                        <div style="width:30%" class="divider-primary"></div>
-                        <div class="divider"></div>
-                    </div>
-                </div>
-            </div>    
-            <div class="section">
-                <div class="swiper-container my-swiper-lsm">
-                  <div class="swiper-wrapper"> 
+<div class="section home-blog-post-bg">
+    <div class="flex-vertical-center">
+        <h5 class="section-subtitle">15+ cities</h5>
+        <div data-w-id="313a2d96-2438-0eb4-cd44-7562ebc5f1d7" class="animated-divider">
+            <h2 class="text-align-center">Local Startups' Meet</h2>
+            <div class="divider-block">
+                <div style="width:30%" class="divider-primary"></div>
+                <div class="divider"></div>
+            </div>
+        </div>
+    </div>
+    <div class="glide">
+        <div class="glide__track" data-glide-el="track">
+            <ul class="glide__slides">
+                {% for venue in lsmvenues %}
+                <li class="glide__slide">
                     <div class="swiper-slide">
-                    {% for lsmvenue in lsmvenues %}
-                      <div class="card">
-                        <a href="{% url 'lsm' lsmvenue.city %}">
-                          <img src="{{ lsmvenue.image.url }}" alt="{{ lsmvenue.city }}" class="card-image">
-                          <div class="tag">LSM</div>
-                          <div class="card-content">
-                            <p class="card-city">LSM-{{ lsmvenue.city }}</p>
-                            <p>{{ lsmvenue.date }}</p>
-                            <p>{{ lsmvenue.venue }}</p>
-                          </div>
-                        </a>
-                      </div>
-                      {% endfor %}
+                    <div class="card">
+                    <a  href="{% url 'lsm' venue.city %}">
+                    <img src="{{ venue.image.url }}" alt="{{ venue.city }}" class="card-image">
+                    <div class="tag">LSM</div>
+                    <div class="card-content">
+                    <p class="card-city">LSM-{{ venue.city }}</p>
+                    <p>{{venue.date}}</p>
+                    <p>{{ venue.venue }}</p>
                     </div>
-                  </div>
-                <div class="swiper-pagination my-swiper"></div>
-                <div class="swiper-button-prev my-swiper-button-prev"></div>
-                <div class="swiper-button-next my-swiper-button-next"></div>
-               </div> 
-                </div>
-            </div>       
+                    </a>
+                    </div>
+                    </div>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+        <!-- Optional navigation controls -->
+        <div class="glide__arrows" data-glide-el="controls">
+            <button class="glide__arrow glide__arrow--left" data-glide-dir="<"><</button>
+            <button class="glide__arrow glide__arrow--right" data-glide-dir=">">></button>
+        </div>
+        <!-- Optional bullets navigation -->
+        <div class="glide__bullets" data-glide-el="controls[nav]">
+            {% for i in lsmvenues.length %}
+            <button class="glide__bullet" data-glide-dir="={{i}}"></button>
+            {% endfor %}
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@glidejs/glide@3.6.1/dist/glide.min.js"></script>
+    <script>
+        new Glide('.glide', {
+            type: 'carousel',          // Carousel type
+            perView: 4,                // Number of slides to show
+            focusAt: 'center',         // Center the active slide
+            autoplay: 2500,            // Autoplay every 2000 ms (2 seconds)
+            animationDuration: 800,    // Animation duration
+            pauseOnHover: true,        // Pause on mouse hover
+            gap: 30,                   // Space between slides
+            breakpoints: {
+                800: {
+                    perView: 2        // Show 2 slides on smaller screens
+                },
+                480: {
+                    perView: 1        // Show 1 slide on very small screens
+                }
+            }
+        }).mount();
+
+
+    </script>
+    <br><br><br><br><br><br><br><br><br><br><br>
+    
             <!-- <div class="home-blog-position">
                 <div class="home-blog-posts">
                     <div data-w-id="430e3dbd-5226-9ff2-90cc-616b8c22d2d5" class="home-blog-display">
