@@ -10,7 +10,6 @@ urlpatterns=[
     path('speakers/',views.speakers,name="speakers"),
     path('contact/',views.contact,name="contact"),
     path('associations/',views.associations,name="associations"),
-    path('test/',views.test,name="test")
 ]
 
 
