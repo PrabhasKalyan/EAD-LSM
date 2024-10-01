@@ -11,7 +11,7 @@ def home(request):
 
 def events(request,city):
     city=get_object_or_404(EADCities,city=city)
-    venues=EADVenue.objects.all()
+    venues=EADVenue.objects.filter(city=city)
     speakers=EADSpeakers.objects.filter(city=city)
     context={'venues':venues,'city':city,'speakers':speakers}
     return render(request,'static/Events/events.html',context)
