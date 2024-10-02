@@ -781,6 +781,9 @@ textarea.w-select {
     grid-area: 1 / 1 / 2 / 2;
     display: table;
 }
+.image-wrapper:after {
+    content: url('../images/ecelllogodots.png');
+}
 
 .w-container:after {
     clear: both;
